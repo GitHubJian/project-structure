@@ -1,0 +1,42 @@
+{
+  "name": "project-structure",
+  "version": "1.0.0",
+  "description": "web interfaces",
+  "main": "index.js",
+  "module": "index.js",
+  "scripts": {
+    "node_start": "NODE_ENV=production node ./server/index.js",
+    "start_development": "NODE_ENV=development pm2 start ./pm2/dev.ecosystem.config.js",
+    "start_production": "NODE_ENV=production pm2 start ./pm2/prod.ecosystem.config.js",
+    "build_dev": "webpack-cli --config ./webpack/webpack.config.dev.js",
+    "build_prod": "webpack-cli --config ./webpack/webpack.config.prod.js",
+    "format": "standard --fix",
+    "commit": "git-cz"
+  },
+  "gitHooks": {
+    "pre-commit": "lint-staged",
+    "commit-msg": "node scripts/verify-commit-msg.js"
+  },
+  "lint-staged": {
+    "*.js": [
+      "eslint --fix",
+      "git add"
+    ]
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/GitHubJian/project-structure.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/GitHubJian/project-structure/issues"
+  },
+  "homepage": "https://github.com/GitHubJian/project-structure#readme",
+  "config": {
+    "commitizen": {
+      "path": "./node_modules/cz-conventional-changelog"
+    }
+  }
+}
